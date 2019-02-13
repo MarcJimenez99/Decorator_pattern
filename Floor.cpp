@@ -1,13 +1,15 @@
 #include "Floor.h"
 
-Floor :: Floor(){}
-
-double Floor :: Floor2(Base * num ){	
-	if(num % 1 == 0){
-		return num;
-	}
-	double remain = num % 1;
-	num = num - remain;
-	return num;
+Floor::Floor() {
+	this->child = nullptr;
+}
+Floor::Floor(Base* child) {
+	this->child = child;
+}
+double Floor::evaluate() {
+	return floor((this->child)->evaluate());
+}
+string Floor::stringify() {
+	return (this->child)->stringify();
 }
 

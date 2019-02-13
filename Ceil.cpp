@@ -1,14 +1,14 @@
 #include "Ceil.h"
-#include <math.h>
-Ceil :: Ceil(){}
-double Ceil :: Ceil2(Base * num){
-	if(fmod(num,1) == 0){
-	  return num;
-	}
-	double remain;
-	remain = fmod(num, 1);
-	double add;
-	add = 1 - remain;
-	num = num + add;
-	return num;
+
+Ceil::Ceil() {
+	this->child = nullptr;
+}
+Ceil::Ceil(Base* child) {
+	this->child = child;
+}
+double Ceil::evaluate() {
+	return ceil((this->child)->evaluate());
+}
+string Ceil::stringify() {
+	return (this->child)->stringify();
 }

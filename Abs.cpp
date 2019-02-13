@@ -1,10 +1,15 @@
 #include "Abs.h"
 
-Abs :: Abs(){}
+Abs::Abs(){
+	this->child = nullptr;
+}
 
-double Abs :: Abs2(Base * num){
-	if(num >= 0 ){
-	  return num;
-	}
-	num = -num;
+Abs::Abs(Base* child) {
+	this->child = child;
+}
+double Abs::evaluate(){
+	return fabs((this->child)->evaluate());
+}
+string Abs::stringify() {
+	return (this->child)->stringify();
 }

@@ -1,13 +1,17 @@
 #ifndef CEIL_H
 #define CEIL_H
 
-#include"Base.h"
+#include"base.hpp"
+#include <cmath>
+#include <math.h>
 
 class Ceil : public Base{
 	private:
-
+		Base* child = nullptr;
 	public:
 		Ceil();
-		double Ceil2(Base *);
-}
+		Ceil(Base* );
+		double evaluate();
+		string stringify();
+};
 #endif
