@@ -1,5 +1,5 @@
-#ifndef DECORATOR_H
-#define DECORATOR_H
+#ifndef DECORATOR_HPP
+#define DECORATOR_HPP
 
 #include "base.hpp"
 
@@ -7,14 +7,13 @@ class Base;
 
 class Decorator : public Base {
         private:
-                Base* evaluate_function = nullptr;
-                Base* stringify_function = nullptr;
-        public:
-                Decorator() { };
-                Decorator(Base* evaluate, Base* stringify) {
-                        this->evaluate_function = evaluate;
-                        this->stringify_function = evaluate;
-                };
-};
+		Base* set = nullptr;
+	public:
+		Decorator() { };
+		double evaluate() = 0;
+		string stringify() = 0;
 		
+};
+
+#endif
 

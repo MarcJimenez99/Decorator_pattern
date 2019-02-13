@@ -12,6 +12,12 @@
 #include "bubble.cpp"
 #include "VectorContainer.cpp"
 #include "SelectionSort.cpp"
+#include "Decorator.hpp"
+#include "Abs.cpp"
+#include "Floor.cpp"
+#include "Ceil.cpp"
+#include "Trunc.cpp"
+#include "Paren.cpp"
 #include <list>
 //#include <vector>
 #include <iostream>
@@ -26,62 +32,47 @@ int main() {
 	Mult* TreeA = new Mult(seven, four);
 
 	Op* three = new Op(3);
+	Add* TreeB = new Add(three, TreeA);
+
+	Trunc* Truncate = new Trunc(TreeA);
+	cout << "Testing Truncate: " << endl;
+	cout << "Before Truncate: ";
+	cout << TreeA->stringify() << endl;
+	cout << "After Truncate: ";
+	cout << Truncate->stringify() << endl;
+	cout << endl;
+	
+	Paren* Parenthesis = new Paren(TreeA);
+	cout << "Testing Parenthesis: " << endl;
+	cout << "Before Parenthesis: ";
+	cout << TreeA->stringify() << endl;
+	cout << "After Parenthesis ";
+	cout << Parenthesis->stringify() << endl;
+	cout << endl;	
+
+	Op* negSeven = new Op(-7.2);
+	Op* one = new Op(1);
+	Mult* TreeC = new Mult(negSeven, one);
+
 	Op* two = new Op(2);
-	Add* TreeB = new Add(three, two);
+	Add* TreeD = new Add(two, TreeC);
 
-	Op* ten = new Op(10);
-	Op* six = new Op(6);
-	Sub* TreeC = new Sub(ten, six);
+	Abs* abs = new Abs(TreeC);
+	Floor* floor = new Floor(TreeC);
+	Ceil* ceil = new Ceil(TreeC);
 
-	ListContainer* container = new ListContainer();
+	cout << "Testing Absolute Value/Floor/Ceiling: " << endl;
+	cout << "Before Functions: " << endl;
+	cout << TreeC->evaluate() << endl;
+	cout << "After Absolute Value: " << endl;
+	cout << abs->evaluate() << endl;
+	cout << endl;
 
-	container->add_element(TreeA);
-	container->add_element(TreeB);
-	container->add_element(TreeC);
-
-	cout << "First Example: " << endl;
-	cout << "First " << container->at(0)->evaluate() << endl;
-	cout << "Second " << container->at(1)->evaluate() << endl;
-	cout << "Third " << container->at(2)->evaluate() << endl;
+	cout << "After Floor: " << endl;
+	cout << floor->evaluate() << endl << endl;
 	
-	container->set_sort_function(new Bubble());
-	container->sort();
-	
-	cout << "First " << container->at(0)->evaluate() << endl;
-        cout << "Second " << container->at(1)->evaluate() << endl;
-        cout << "Third " << container->at(2)->evaluate() << endl << endl;
-
-	cout << "Second Example: " << endl;
-	
-	Op* seven2 = new Op(7);
-        Op* negOne = new Op(-1);
-        Mult* TreeAA = new Mult(seven2, negOne);
-
-        Op* negThree = new Op(-3);
-        Op* negFive = new Op(-5);
-        Add* TreeAB = new Add(negThree, negFive);
-
-        Op* six6 = new Op(6);
-        Op* eight = new Op(8);
-        Sub* TreeAC = new Sub(six6, eight);
-
-        VectorContainer* container2 = new VectorContainer();
-
-        container2->add_element(TreeAA);
-        container2->add_element(TreeAB);
-	container2->add_element(TreeAC);
-
-        cout << "First " << container2->at(0)->evaluate() << endl;
-        cout << "Second " << container2->at(1)->evaluate() << endl;
-        cout << "Third " << container2->at(2)->evaluate() << endl;
-
-        container2->set_sort_function(new SelectionSort());
-        container2->sort();
-
-        cout << "First " << container2->at(0)->evaluate() << endl;
-        cout << "Second " << container2->at(1)->evaluate() << endl;
-        cout << "Third " << container2->at(2)->evaluate() << endl;
-	
+	cout << "After Ceiling: " << endl;
+	cout << ceil->evaluate() << endl << endl;
 
 	return 0;
 }
